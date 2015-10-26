@@ -1,0 +1,21 @@
+{
+  "name": "grunt-boostrap-sass-browsersync",
+  "version": "0.1.0",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "components-font-awesome": "~4.4.0",
+    "bootstrap-sass-official": "~3.3.3"
+  }
+}
