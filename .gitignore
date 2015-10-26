@@ -12,6 +12,10 @@ Thumbs.db
 #######################
 .sass-cache/
 
+# SASS Maps
+#######################
+app/css/*.css.map
+
 # Generated CSS output
 #######################
 app/css/*.css
