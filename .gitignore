@@ -1,0 +1,22 @@
+# OS generated files
+####################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# SASS Cache
+#######################
+.sass-cache/
+
+# Generated CSS output
+#######################
+app/css/*.css
+
+# Package dependencies
+######################
+node_modules/
+bower_components/
