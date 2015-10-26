@@ -135,5 +135,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-delete-sync');
 
 	// define default task
-	grunt.registerTask('default', ["browserSync", "watch", "concat", "uglify"]);
+	grunt.registerTask('default', ["browserSync", "watch"]);
 };
