@@ -2,10 +2,10 @@
 @import "common";
 
 // Bourbon
-@import "lib/bourbon";
+@import "lib/bourbon/app/assets/stylesheets/bourbon";
 
 // Bitters
-@import "base/bitters";
+@import "base/bitters/app/assets/stylesheets/base";
 
 // Neat
-@import "lib/neat";
+@import "lib/neat/app/assets/stylesheets/neat";
