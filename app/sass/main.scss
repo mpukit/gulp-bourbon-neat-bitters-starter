@@ -1,11 +1,17 @@
+// Normalize 
+@import "lib/normalize-scss/normalize";
+
 // Bourbon
 @import "lib/bourbon/app/assets/stylesheets/bourbon";
 
-// Bitters
-@import "base/bitters/app/assets/stylesheets/base";
+// Bitters (Grid Settings)
+@import "base/bitters/app/assets/stylesheets/grid-settings";
 
 // Neat
 @import "lib/neat/app/assets/stylesheets/neat";
+
+// Bitters
+@import "base/bitters/app/assets/stylesheets/base";
 
 // Common
 @import "common";

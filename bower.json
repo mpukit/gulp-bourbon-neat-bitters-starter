@@ -18,5 +18,8 @@
     "bourbon": "*",
     "neat": "*",
     "bitters": "*"
+  },
+  "devDependencies": {
+    "normalize-scss": "~3.0.3"
   }
 }
