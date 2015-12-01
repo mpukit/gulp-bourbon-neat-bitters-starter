@@ -2,10 +2,10 @@
 @import "common";
 
 // Bourbon
-@import "../../bower_components/bourbon/app/assets/stylesheets/bourbon"; // Move for Prod
+@import "lib/bourbon";
 
 // Bitters
-@import "../../bower_components/bitters/app/assets/stylesheets/base"; // Move for Prod
+@import "base/bitters";
 
 // Neat
-@import "../../bower_components/neat/app/assets/stylesheets/neat"; // Move for Prod
+@import "lib/neat";
