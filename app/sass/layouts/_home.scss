@@ -12,11 +12,13 @@ section {
 		@include span-columns(12);
 		
 		#content-1 {
-			@include span-columns(4);
+			@include span-columns(4 of 12); // For nested selectors, pass the number of parent columns as well
+			@include pad();
 			background-color: lightgrey;
 		}
 		#content-2 {
-			@include span-columns(8);
+			@include span-columns(8 of 12);
+			@include pad();
 			background-color: grey;
 		}
 	}
@@ -25,11 +27,13 @@ section {
 		@include span-columns(12);
 		
 		#content-1 {
-			@include span-columns(6);
+			@include span-columns(6 of 12);
+			@include pad();
 			background-color: lightpink;
 		}
 		#content-2 {
-			@include span-columns(6);
+			@include span-columns(6 of 12);
+			@include pad();
 			background-color: hotpink;
 		}
 	}
@@ -38,11 +42,13 @@ section {
 		@include span-columns(12);
 		
 		#content-1 {
-			@include span-columns(8);
+			@include span-columns(8 of 12);
+			@include pad();
 			background-color: lightgreen;
 		}
 		#content-2 {
-			@include span-columns(4);
+			@include span-columns(4 of 12);
+			@include pad();
 			background-color: seagreen;
 		}
 	}
