@@ -1,0 +1,49 @@
+#main {
+	@include outer-container;
+	background-color: lightblue;
+}
+
+section {
+	@include outer-container;
+	text-align: center;
+	margin-bottom: 1em;
+	
+	&#top-row {
+		@include span-columns(12);
+		
+		#content-1 {
+			@include span-columns(4);
+			background-color: lightgrey;
+		}
+		#content-2 {
+			@include span-columns(8);
+			background-color: grey;
+		}
+	}
+	
+	&#middle-row {
+		@include span-columns(12);
+		
+		#content-1 {
+			@include span-columns(6);
+			background-color: lightpink;
+		}
+		#content-2 {
+			@include span-columns(6);
+			background-color: hotpink;
+		}
+	}
+	
+	&#bottom-row {
+		@include span-columns(12);
+		
+		#content-1 {
+			@include span-columns(8);
+			background-color: lightgreen;
+		}
+		#content-2 {
+			@include span-columns(4);
+			background-color: seagreen;
+		}
+	}
+}
