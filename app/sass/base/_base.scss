@@ -4,5 +4,11 @@
 // Bitters
 @import "bitters/app/assets/stylesheets/base";
 
-// Common (Custom) Styles
+// Custom Variables
+@import "variables";
+
+// Custom Mixins
+@import "mixins";
+
+// Common Styles
 @import "common";
