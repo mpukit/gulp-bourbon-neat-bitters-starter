@@ -3,7 +3,7 @@ Starter Frameworks for a Bourbon, Neat &amp; Bitters Project
 
 http://bourbon.io/
 
-Requires Node, Bower, Grunt and Sass.
+*Requires Node and Bower.
 
 From the command line, run the following commands to install the required dependancies:
 
