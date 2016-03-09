@@ -20,6 +20,7 @@ section {
 			@include span-columns(8 of 12);
 			@include pad();
 			background-color: grey;
+            // background-color: rp-color('primary');
 		}
 		
 		#content-1, #content-2 {
@@ -40,7 +41,9 @@ section {
 		#content-2 {
 			@include span-columns(6 of 12);
 			@include pad();
-			background-color: hotpink;
+			//background-color: hotpink;
+            //background-color: rp-color('purple', 'base');
+            background-color: rp-color('purple', $opacity: '50');
 		}
 		
 		#content-1, #content-2 {
