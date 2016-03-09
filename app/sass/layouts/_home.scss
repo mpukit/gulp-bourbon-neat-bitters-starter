@@ -20,7 +20,7 @@ section {
 			@include span-columns(8 of 12);
 			@include pad();
 			background-color: grey;
-            // background-color: rp-color('primary');
+            // background-color: rp-color('primary'); // Base color
 		}
 		
 		#content-1, #content-2 {
@@ -41,9 +41,10 @@ section {
 		#content-2 {
 			@include span-columns(6 of 12);
 			@include pad();
-			//background-color: hotpink;
-            //background-color: rp-color('purple', 'base');
-            background-color: rp-color('purple', $opacity: '50');
+			background-color: hotpink; 
+            // background-color: rp-color('purple'); // Base color
+            // background-color: rp-color('purple', 'base'); // Nested color
+            // background-color: rp-color('purple', $opacity: '50'); // Base color with opacity
 		}
 		
 		#content-1, #content-2 {
