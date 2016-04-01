@@ -1,6 +1,6 @@
 {
-  "name": "scroll-navigation",
-  "version": "0.1",
+  "name": "bourbon-neat-bitters-starter",
+  "version": "1.0.0",
   "description": "",
   "main": "gruntfile.js",
   "dependencies": {
@@ -21,12 +21,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mpukit/scroll-navigation.git"
+    "url": "git+https://github.com/mpukit/bourbon-neat-bitters-starter.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mpukit/scroll-navigation/issues"
+    "url": "https://github.com/mpukit/bourbon-neat-bitters-starter/issues"
   },
-  "homepage": "https://github.com/mpukit/scroll-navigation#readme"
+  "homepage": "https://github.com/mpukit/bourbon-neat-bitters-starter#readme"
 }
