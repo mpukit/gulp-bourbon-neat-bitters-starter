@@ -1,124 +1,130 @@
-// This shows a full config file!
 module.exports = function(grunt) {
 
 	grunt.initConfig({
-		pkg : grunt.file.readJSON('package.json'),
+		pkg: grunt.file.readJSON('package.json'),
 
-		watch : {
-			content : {
-				files : 'app/*.html'
-			}, //this live reloads html also
+		watch: {
+			content: {
+				files: ['app/*.html']
+			},
 
-			images : {
-				files : ['app/imgs/*.{png,jpg,gif}'],
-				tasks : ['newer:imagemin']
-			}, // watch images added to src
+			images: {
+				files: ['app/imgs/*.{png,jpg,gif}'],
+				tasks: ['newer:imagemin']
+			},
 
-			deleting : {
-				files : ['app/imgs/*.{png,jpg,gif}'],
-				tasks : ['delete_sync']
-			}, // end of delete sync
+			deleting: {
+				files: ['app/imgs/*.{png,jpg,gif}'],
+				tasks: ['delete_sync']
+			},
 
-			scripts : {
-				files : ['js/libs/*.js', 'js/custom/*.js'],
-				tasks : ['concat', 'uglify'],
-				options : {
-					spawn : false,
+			scripts: {
+				files: ['js/libs/*.js', 'js/custom/*.js'],
+				tasks: ['concat', 'uglify'],
+				options: {
+					//spawn: false,
 				},
-			}, //end of watch scripts
+			},
 
-			css : {
-				files : ['app/sass/**/*.scss'],
-				tasks : ['sass', 'autoprefixer'],
-				options : {
-					spawn : false,
+			sass: {
+				files: ['app/sass/**/*.scss'],
+				tasks: ['sass', 'autoprefixer'],
+				options: {
+                    sourcemap: true,
+					//spawn: false,
 				}
-			}, //end of sass watch
+			},
+            
+            css: {
+				files: ['app/css/**/*.css', 'app/css/**/*.map'],
+			},
+            
+            dependencies: {
+				files: ['bower_components/*'],
+				tasks: ['wiredep']
+			},
 
 		}, //end of watch
 
-		/* ====================================================================================================================================================
-		 * ====================================================================================================================================================
-
-		 Tasks
-
-		 ====================================================================================================================================================
-		 ====================================================================================================================================================
-		 */
-
-		delete_sync : {
-			dist : {
-				cwd : 'app/imgs/dist',
-				src : ['**'],
-				syncWith : 'app/imgs/src'
+		delete_sync: {
+			production: {
+				cwd: 'app/imgs',
+				src: ['**'],
+				syncWith: 'app/imgs'
 			}
-		}, // end of delete sync
+		},
 
-		imagemin : {
-			dynamic : {
-				files : [{
-					expand : true, // Enable dynamic expansion
-					cwd : 'app/imgs/src/', // source images (not compressed)
-					src : ['**/*.{png,jpg,gif}'], // Actual patterns to match
-					dest : 'app/imgs/dist/' // Destination of compressed files
+		imagemin: {
+			dynamic: {
+				files: [{
+					expand: true, // Enable dynamic expansion
+					cwd: 'app/imgs/src/', // source images (not compressed)
+					src: ['**/*.{png,jpg,gif}'], // Actual patterns to match
+					dest: 'app/imgs' // Destination of compressed files
 				}]
 			}
-		}, //end imagemin
+		},
 
-		concat : {
-			dist : {
-				src : ['app/js/libs/*.js', 'app/js/custom/*.js'],
-				dest : 'app/js/build/production.js'
+		concat: {
+			production: {
+				src: ['app/js/libs/*.js', 'app/js/custom/*.js'],
+				dest: 'app/js/build/production.js'
 			}
-		}, //end concat
+		},
 
-		uglify : {
-			dist : {
-				src : 'app/js/build/production.js',
-				dest : 'app/js/build/production.min.js'
+		uglify: {
+			production: {
+				src: 'app/js/build/production.js',
+				dest: 'app/js/build/production.min.js'
 			}
-		}, //end uglify
+		},
 
-		sass : {
-			dist : {
-				options : {
-					style : 'compressed', //no need for config.rb
-                    sourcemap : true
-					// compass : 'true', //no need to @import compass
-					// require : 'sassy-buttons' // plugins if needed!
+		sass: {
+			production: {
+				options: {
+                    sourcemap: true, // run grunt sass to kickstart if not working in dev tools
+					style: 'compressed' //no need for config.rb
+					// compass: 'true', //no need to @import compass
+					// require: 'sassy-buttons' // plugins if needed!
 				},
-				files : {
+				files: {
 					'app/css/main.css' : 'app/sass/main.scss'
 				}
 			}
-		}, //end of sass
+		},
 
-		autoprefixer : {
+		autoprefixer: {
 
-			options : {
-
-				browsers : ['> 5%', 'last 2 version', 'ie 8', 'ie 9']
+			options: {
+				browsers: ['> 5%', 'last 2 version', 'ie 8', 'ie 9']
 			},
 
-			dist : {
-				files : {
+			production: {
+				files: {
 					'app/css/main.css' : 'app/css/main.css'
 				}
-
 			}
-		}, //end of autoprefixer
+		},
+        
+        wiredep: { // grunt wiredep task (to hooks in index)
+            
+            target: {
+                src: 'app/index.html' // .html support
+            }
+            
+        },
 
-		browserSync : {
-			dev : {
-				bsFiles : {
-					src : ['app/css/*.css', 'app/imgs/*.*', 'app/js/build/production.min.js', 'app/*.html']
+		browserSync: {
+			dev: {
+				bsFiles: {
+					src: ['app/css/*.map', 'app/css/*.css', 'app/imgs/*.*', 'app/js/build/production.min.js', 'app/*.html']
 				},
-				options : {
-					server : {
-						baseDir : "./app"
+				options: {
+					server: {
+						baseDir: "./app"
 
 					},
-					watchTask : true // < VERY important
+					watchTask: true // < VERY important
 				}
 			}
 		}
@@ -134,6 +140,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-imagemin');
 	grunt.loadNpmTasks('grunt-newer');
 	grunt.loadNpmTasks('grunt-delete-sync');
+    grunt.loadNpmTasks('grunt-wiredep');
 
 	// define default task
 	grunt.registerTask('default', ["browserSync", "watch"]);
