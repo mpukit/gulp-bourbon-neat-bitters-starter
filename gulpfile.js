@@ -3,7 +3,8 @@ var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var concat = require('gulp-concat');
-var jslint = require('gulp-jslint');
+var jshint = require('gulp-jshint');
+var stylish = require('jshint-stylish');
 var uglify = require('gulp-uglify');
 var browserSync = require('browser-sync').create();
 
@@ -37,10 +38,10 @@ gulp.task('scripts', function () {
     .pipe(gulp.dest('./app/js/dist'));
 });
 
-gulp.task('lint', function () {
+gulp.task('jshint', function () {
     return gulp.src(['./app/js/custom/*.js'])
-            .pipe(jslint())
-            .pipe(jslint.reporter('stylish')); // Basic setup using 'Stylish'
+            .pipe(jshint())
+            .pipe(jshint.reporter(stylish));
 });
 
 gulp.task('compress', function() {
@@ -49,7 +50,6 @@ gulp.task('compress', function() {
     .pipe(gulp.dest('./app/js/dist/compressed'));
 });
 
-// Static server
 gulp.task('browser-sync', function() {
     browserSync.init({
         server: {
@@ -58,7 +58,7 @@ gulp.task('browser-sync', function() {
     });
 });
 
-gulp.task('serve', ['sass', 'scripts', 'lint', 'compress', 'browser-sync'], function() {
+gulp.task('serve', ['sass', 'scripts', 'jshint', 'compress', 'browser-sync'], function() {
   gulp.watch(['./app/sass/*.scss'], ['sass']);
   gulp.watch(['./app/css/*.css'], ['css']);
   gulp.watch(['./app/*.html', './app/css/*.css']).on('change', browserSync.reload); // Watch HTML/CSS
