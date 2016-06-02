@@ -45,13 +45,11 @@ gulp.task('scripts', function () {
     .pipe(gulp.dest('./app/js/dist'));
 });
 
-// gulp.task('lint', function () {
-//     return gulp.src(['./app/js/**/*.js'])
-//             .pipe(jslint())
-//             // .pipe(jslint.reporter('default', errorsOnly)) // Default Reporter
-//             // .pipe(jslint.reporter('stylish', options)); // Stylish Reporter
-//             .pipe(jslint.reporter('stylish')); // Basic setup using 'Stylish'
-// });
+gulp.task('lint', function () {
+    return gulp.src(['./app/js/custom/*.js'])
+            .pipe(jslint())
+            .pipe(jslint.reporter('stylish')); // Basic setup using 'Stylish'
+});
 
 gulp.task('compress', function() {
   return gulp.src('./app/js/custom/*.js')
@@ -68,7 +66,7 @@ gulp.task('browser-sync', function() {
     });
 });
 
-gulp.task('serve', ['sass', 'css', 'scripts', 'compress', 'browser-sync'], function() {
+gulp.task('serve', ['sass', 'css', 'scripts', 'lint', 'compress', 'browser-sync'], function() {
   gulp.watch(['./app/sass/*.scss'], ['sass']);
   gulp.watch(['./app/css/*.css'], ['css']);
   gulp.watch(['./app/*.html', './app/css/*.css']).on('change', browserSync.reload); // Watch HTML/CSS
