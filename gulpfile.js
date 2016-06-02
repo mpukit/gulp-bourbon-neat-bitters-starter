@@ -47,6 +47,7 @@ gulp.task('jshint', function () {
 gulp.task('compress', function() {
   return gulp.src('./app/js/custom/*.js')
     .pipe(uglify())
+    .pipe(concat('production.min.js'))
     .pipe(gulp.dest('./app/js/dist/compressed'));
 });
 
