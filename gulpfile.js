@@ -36,21 +36,21 @@ gulp.task('css', function () {
     .pipe(gulp.dest('./app/css'));
 });
 
-// gulp.task('scripts', function () {
-//   return gulp.src(['./javascripts/*.js'])
-//     .pipe(sourcemaps.init())
-//     .pipe(concat('app.js'))
-//     .pipe(sourcemaps.write())
-//     .pipe(gulp.dest('./javascripts/dist'));
-// });
+gulp.task('scripts', function () {
+  return gulp.src(['./app/js/custom/*.js'])
+    .pipe(sourcemaps.init())
+    .pipe(concat('production.js'))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./app/js/dist'));
+});
 
-// gulp.task('lint', function () {
-//     return gulp.src(['./javascripts/*.js'])
-//             .pipe(jslint())
-//             // .pipe(jslint.reporter('default', errorsOnly)) // Default Reporter
-//             // .pipe(jslint.reporter('stylish', options)); // Stylish Reporter
-//             .pipe(jslint.reporter('stylish')); // Basic setup using 'Stylish'
-// });
+gulp.task('lint', function () {
+    return gulp.src(['./app/js/**/*.js'])
+            .pipe(jslint())
+            // .pipe(jslint.reporter('default', errorsOnly)) // Default Reporter
+            // .pipe(jslint.reporter('stylish', options)); // Stylish Reporter
+            .pipe(jslint.reporter('stylish')); // Basic setup using 'Stylish'
+});
 
 // Static server
 gulp.task('browser-sync', function() {
@@ -61,7 +61,7 @@ gulp.task('browser-sync', function() {
     });
 });
 
-gulp.task('serve', ['sass', 'css', 'browser-sync'], function() {
+gulp.task('serve', ['sass', 'css', 'scripts', 'lint', 'browser-sync'], function() {
   gulp.watch(['./app/sass/*.scss'], ['sass']);
   gulp.watch(['./app/css/*.css'], ['css']);
   gulp.watch(['./app/*.html', './app/css/*.css']).on('change', browserSync.reload); // Watch HTML/CSS
