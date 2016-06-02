@@ -1,6 +1,6 @@
 {
-  "name": "grunt-bourbon-sass-browsersync",
-  "version": "0.1.0",
+  "name": "angular-bourbon-neat-bitters-starter",
+  "version": "1.0.0",
   "moduleType": [
     "node"
   ],
