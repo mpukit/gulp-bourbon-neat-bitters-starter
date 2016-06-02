@@ -19,7 +19,5 @@
   },
   "author": "",
   "license": "MIT",
-  "private": true,
-  "dependencies": {
-  }
+  "private": true
 }
