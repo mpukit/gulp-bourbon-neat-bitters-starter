@@ -14,11 +14,11 @@ Thumbs.db
 
 # SASS Maps
 #######################
-app/css/*.css.map
+src/css/*.css.map
 
 # Generated CSS output
 #######################
-app/css/*.css
+src/css/*.css
 
 # Package dependencies
 ######################

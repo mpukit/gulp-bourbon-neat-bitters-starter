@@ -9,11 +9,11 @@ var uglify = require('gulp-uglify');
 var browserSync = require('browser-sync').create();
 
 var sassPaths = [
-  './app/sass'
+  './src/sass'
 ];
 
 gulp.task('sass', function () {
-  return gulp.src('./app/sass/*.scss')
+  return gulp.src('./src/sass/**/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass({
       includePaths: sassPaths
@@ -27,40 +27,40 @@ gulp.task('sass', function () {
     }))
     .pipe(concat('main.css'))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('./app/css'));
+    .pipe(gulp.dest('./src/css'));
 });
 
 gulp.task('scripts', function () {
-  return gulp.src(['./app/js/custom/*.js'])
+  return gulp.src(['./src/js/custom/*.js'])
     .pipe(sourcemaps.init())
     .pipe(concat('production.js'))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./app/js/dist'));
+    .pipe(gulp.dest('./src/js/dist'));
 });
 
 gulp.task('jshint', function () {
-    return gulp.src(['./app/js/custom/*.js'])
+    return gulp.src(['./src/js/custom/*.js'])
             .pipe(jshint())
             .pipe(jshint.reporter(stylish));
 });
 
 gulp.task('compress', function() {
-  return gulp.src('./app/js/custom/*.js')
+  return gulp.src('./src/js/custom/*.js')
     .pipe(uglify())
     .pipe(concat('production.min.js'))
-    .pipe(gulp.dest('./app/js/dist/compressed'));
+    .pipe(gulp.dest('./src/js/dist/compressed'));
 });
 
 gulp.task('browser-sync', function() {
     browserSync.init({
         server: {
-            baseDir: "./app"
+            baseDir: "./src"
         }
     });
 });
 
 gulp.task('serve', ['sass', 'scripts', 'jshint', 'compress', 'browser-sync'], function() {
-  gulp.watch(['./app/sass/*.scss'], ['sass']);
-  gulp.watch(['./app/css/*.css'], ['css']);
-  gulp.watch(['./app/*.html', './app/css/*.css']).on('change', browserSync.reload); // Watch HTML/CSS
+  gulp.watch(['./src/sass/**/*.scss'], ['sass']);
+  gulp.watch(['./src/css/*.css'], ['css']);
+  gulp.watch(['./src/*.html', './src/css/*.css']).on('change', browserSync.reload); // Watch HTML/CSS
 });
