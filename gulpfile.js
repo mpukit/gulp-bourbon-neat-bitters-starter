@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
+var plumber = require('gulp-plumber');
 var concat = require('gulp-concat');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
@@ -13,7 +14,8 @@ var sassPaths = [
 ];
 
 gulp.task('sass', function () {
-  return gulp.src('./src/sass/**/*.scss')
+  return gulp.src('./src/sass/*.scss')
+    .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(sass({
       includePaths: sassPaths
@@ -59,8 +61,18 @@ gulp.task('browser-sync', function() {
     });
 });
 
-gulp.task('serve', ['sass', 'scripts', 'jshint', 'compress', 'browser-sync'], function() {
-  gulp.watch(['./src/sass/**/*.scss'], ['sass']);
-  gulp.watch(['./src/css/*.css'], ['css']);
-  gulp.watch(['./src/*.html', './src/css/*.css']).on('change', browserSync.reload); // Watch HTML/CSS
+
+gulp.task('watch', function() {
+  // Watch .html files
+  gulp.watch('./src/**/*.html').on('change', browserSync.reload);
+  // Watch .sass files
+  gulp.watch('./src/sass/**/*.scss', ['sass', browserSync.reload]);
+  // Watch .js files
+  gulp.watch('./src/js/**/*.js', ['scripts', browserSync.reload]);
+  // Watch image files
+  // gulp.watch('./src/imgs/**/*', ['images', browserSync.reload]);
+});
+
+gulp.task('serve', function() {
+    gulp.start('sass', 'scripts', 'jshint', 'compress', 'browser-sync', 'watch');
 });
