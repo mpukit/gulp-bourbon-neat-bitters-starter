@@ -1,7 +1,7 @@
-# angular-bourbon-neat-bitters-starter
-Starter Frameworks for a AngularJS, Bourbon, Neat &amp; Bitters Project
+# gulp-bourbon-neat-bitters-starter
+Starter Frameworks for a Bourbon, Neat &amp; Bitters Project using Gulp
 
-https://angularjs.org/
+https://gulpjs.org/
 http://bourbon.io/
 
 *Requires Node and Bower.
