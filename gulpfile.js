@@ -9,21 +9,12 @@ var stylish = require('jshint-stylish');
 var uglify = require('gulp-uglify');
 var browserSync = require('browser-sync').create();
 
-var sassPaths = [
-  './src/sass'
-];
-
 gulp.task('sass', function () {
   return gulp.src('./src/sass/*.scss')
     .pipe(plumber())
     .pipe(sourcemaps.init())
-    .pipe(sass({
-      includePaths: sassPaths
-    })
-      .on('error', function (err) {
-        console.log(err.message + ' on line ' + err.lineNumber + ' in file : ' + err.fileName);
-      })
-    )
+    .pipe(sass().on('error', sass.logError))
+    .pipe(plumber())
     .pipe(autoprefixer({
       browsers: ['last 2 versions', 'ie >= 9']
     }))
