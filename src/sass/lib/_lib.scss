@@ -4,5 +4,8 @@
 // Bourbon
 @import "bourbon/app/assets/stylesheets/bourbon";
 
+// Bitters (Grid Settings)
+@import "../base/bitters/app/assets/stylesheets/grid-settings";
+
 // Neat
 @import "neat/app/assets/stylesheets/neat";
